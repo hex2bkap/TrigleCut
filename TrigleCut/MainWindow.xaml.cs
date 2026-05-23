@@ -3,12 +3,12 @@ using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using PicOrient.Helpers;
-using PicOrient.ViewModels;
+using TrigleCut.Helpers;
+using TrigleCut.ViewModels;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 
-namespace PicOrient;
+namespace TrigleCut;
 
 public sealed partial class MainWindow : Window
 {
@@ -80,7 +80,7 @@ public sealed partial class MainWindow : Window
     {
         var logDir = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "PicOrient", "logs");
+            "TrigleCut", "logs");
         Directory.CreateDirectory(logDir);
         Process.Start(new ProcessStartInfo("explorer.exe", logDir) { UseShellExecute = true });
     }

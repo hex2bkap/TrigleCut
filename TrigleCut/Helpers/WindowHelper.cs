@@ -1,8 +1,8 @@
 using Microsoft.UI.Windowing;
 using Windows.Graphics;
-using PicOrient.Models;
+using TrigleCut.Models;
 
-namespace PicOrient.Helpers;
+namespace TrigleCut.Helpers;
 
 public static class WindowHelper
 {

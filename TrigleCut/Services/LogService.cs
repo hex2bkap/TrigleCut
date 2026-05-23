@@ -1,4 +1,4 @@
-namespace PicOrient.Services;
+namespace TrigleCut.Services;
 
 public class LogService
 {

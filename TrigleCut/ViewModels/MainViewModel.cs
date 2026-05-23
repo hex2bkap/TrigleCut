@@ -2,11 +2,11 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
-using PicOrient.Models;
-using PicOrient.Services;
+using TrigleCut.Models;
+using TrigleCut.Services;
 using System.Collections.Generic;
 
-namespace PicOrient.ViewModels;
+namespace TrigleCut.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {

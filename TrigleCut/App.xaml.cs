@@ -1,7 +1,7 @@
 using Microsoft.UI.Xaml;
-using PicOrient.Services;
+using TrigleCut.Services;
 
-namespace PicOrient;
+namespace TrigleCut;
 
 public partial class App : Application
 {

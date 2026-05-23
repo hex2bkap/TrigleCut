@@ -1,4 +1,4 @@
-namespace PicOrient.Models;
+namespace TrigleCut.Models;
 
 public enum DuplicateHandling { Skip, Overwrite, AutoRename }
 public enum OperationMode { Copy, Move }

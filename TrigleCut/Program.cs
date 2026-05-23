@@ -1,4 +1,4 @@
-namespace PicOrient;
+namespace TrigleCut;
 
 class Program
 {

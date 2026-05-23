@@ -1,8 +1,8 @@
 using Windows.Storage;
 using Windows.Storage.FileProperties;
-using PicOrient.Models;
+using TrigleCut.Models;
 
-namespace PicOrient.Services;
+namespace TrigleCut.Services;
 
 public enum ImageOrientation { Portrait, Landscape, Square }
 

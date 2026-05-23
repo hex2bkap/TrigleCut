@@ -1,6 +1,6 @@
-using PicOrient.Models;
+using TrigleCut.Models;
 
-namespace PicOrient.Services;
+namespace TrigleCut.Services;
 
 public record SortProgress(int Processed, int Total, string CurrentFile);
 public record SortError(string FileName, string Reason);

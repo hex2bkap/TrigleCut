@@ -1,7 +1,7 @@
 using System.Text.Json;
-using PicOrient.Models;
+using TrigleCut.Models;
 
-namespace PicOrient.Services;
+namespace TrigleCut.Services;
 
 public class SettingsService
 {
