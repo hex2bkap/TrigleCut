@@ -15,6 +15,7 @@
     <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
     <Version>1.0.0</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <ApplicationIcon>Assets\TrigleCut.ico</ApplicationIcon>
   </PropertyGroup>
 
   <!-- 配布用 publish 設定: dotnet publish -c Release -r win-x64 -->

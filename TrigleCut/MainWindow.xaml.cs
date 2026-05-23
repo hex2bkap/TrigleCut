@@ -22,7 +22,15 @@ public sealed partial class MainWindow : Window
         InitializeComponent();
         ViewModel = new MainViewModel(DispatcherQueue);
         WindowHelper.RestorePosition(this, App.Settings.Current);
+        SetWindowIcon();
         Closed += MainWindow_Closed;
+    }
+
+    private void SetWindowIcon()
+    {
+        var iconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "TrigleCut.ico");
+        if (File.Exists(iconPath))
+            AppWindow.SetIcon(iconPath);
     }
 
     private void MainWindow_Closed(object sender, WindowEventArgs args)
