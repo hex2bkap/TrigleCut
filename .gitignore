@@ -11,5 +11,8 @@
 # Logs and settings (user-specific)
 *.log
 
-# Preview
+# Preview / temp
 cancel_button_preview.html
+
+# Release zip
+*.zip
