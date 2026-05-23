@@ -6,7 +6,7 @@ namespace PicOrient.Services;
 public class SettingsService
 {
     private static readonly string SettingsDir =
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PicOrient");
+        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TrigleCut");
     private static readonly string SettingsFile = Path.Combine(SettingsDir, "settings.json");
 
     public AppSettings Current { get; private set; } = new();

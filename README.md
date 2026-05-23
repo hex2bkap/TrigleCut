@@ -1,4 +1,4 @@
-# PicOrient
+# TrigleCut
 
 画像ファイルを**縦・横・中間**に自動で振り分けるWindows用ツールです。
 
@@ -36,7 +36,7 @@
 
 ### 1. Windows App SDK ランタイムをインストール
 
-PicOrient の実行には Windows App SDK ランタイムが必要です。
+TrigleCut の実行には Windows App SDK ランタイムが必要です。
 
 **インストーラーのダウンロード:**
 1. [Windows App SDK リリースページ](https://learn.microsoft.com/ja-jp/windows/apps/windows-app-sdk/downloads) を開く
@@ -45,10 +45,10 @@ PicOrient の実行には Windows App SDK ランタイムが必要です。
 
 > Windows 11 や最新のアプリをインストール済みの環境では、すでに入っている場合があります。
 
-### 2. PicOrient を展開して起動
+### 2. TrigleCut を展開して起動
 
-1. `PicOrient-v1.0.0.zip` を任意のフォルダに展開
-2. `PicOrient.exe` を実行
+1. `TrigleCut-v1.0.0.zip` を任意のフォルダに展開
+2. `TrigleCut.exe` を実行
 
 インストール不要です。フォルダごとどこに置いても動作します。
 
@@ -69,8 +69,8 @@ PicOrient の実行には Windows App SDK ランタイムが必要です。
 
 | 種類 | 場所 |
 |------|------|
-| 設定ファイル | `%LocalAppData%\PicOrient\settings.json` |
-| エラーログ | `%LocalAppData%\PicOrient\logs\` |
+| 設定ファイル | `%LocalAppData%\TrigleCut\settings.json` |
+| エラーログ | `%LocalAppData%\TrigleCut\logs\` |
 
 ログはアプリ内「ヘルプ → ログフォルダを開く」から確認できます。
 
@@ -79,7 +79,7 @@ PicOrient の実行には Windows App SDK ランタイムが必要です。
 ## 配布用ビルド手順（開発者向け）
 
 ```
-dotnet publish PicOrient/PicOrient.csproj -c Release -r win-x64 -o publish/
+dotnet publish TrigleCut/TrigleCut.csproj -c Release -r win-x64 -o publish/
 ```
 
 出力先 `publish/` フォルダの中身を zip にして配布してください。

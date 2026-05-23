@@ -1,6 +1,6 @@
 # 開発ガイド
 
-このドキュメントは、PicOrient の開発プロセス・技術的判断・注意事項をまとめたものです。
+このドキュメントは、TrigleCut の開発プロセス・技術的判断・注意事項をまとめたものです。
 同様のWinUI 3アプリを開発する際の参考としても使えます。
 
 ---
@@ -25,7 +25,7 @@
 
 ビルド確認:
 ```
-cd PicOrient
+cd TrigleCut
 dotnet build
 ```
 
@@ -35,12 +35,12 @@ dotnet build
 
 ### デバッグ実行
 ```
-dotnet run --project PicOrient/PicOrient.csproj
+dotnet run --project TrigleCut/TrigleCut.csproj
 ```
 
 ### 配布用ビルド（self-contained, x64）
 ```
-dotnet publish PicOrient/PicOrient.csproj -c Release -r win-x64 -o publish/
+dotnet publish TrigleCut/TrigleCut.csproj -c Release -r win-x64 -o publish/
 ```
 出力先 `publish/` フォルダを zip にして配布する。
 
@@ -49,7 +49,7 @@ dotnet publish PicOrient/PicOrient.csproj -c Release -r win-x64 -o publish/
 ## プロジェクト構成
 
 ```
-PicOrient/
+TrigleCut/
 ├── App.xaml / App.xaml.cs          # アプリケーションエントリポイント
 ├── MainWindow.xaml / .xaml.cs      # メインウィンドウ（View）
 ├── Program.cs                      # エントリポイント手動定義（※1）
@@ -179,7 +179,7 @@ uint height = props.Height;
 ## 設定・ログの保存場所
 
 ```
-%LocalAppData%\PicOrient\
+%LocalAppData%\TrigleCut\
 ├── settings.json    # アプリ設定
 └── logs\
     └── app-YYYY-MM-DD.log
@@ -190,15 +190,15 @@ uint height = props.Height;
 ## リリース手順
 
 1. `MainWindow.xaml.cs` の `AppVersion` を更新
-2. `PicOrient.csproj` の `<Version>` を更新
+2. `TrigleCut.csproj` の `<Version>` を更新
 3. `README.md` のバージョン履歴を追記
 4. ビルドと動作確認
 5. git commit + tag（例: `git tag v1.1.0`）
 6. publish して zip を作成:
    ```
-   dotnet publish PicOrient/PicOrient.csproj -c Release -r win-x64 -o publish/
+   dotnet publish TrigleCut/TrigleCut.csproj -c Release -r win-x64 -o publish/
    ```
-7. `PicOrient-vX.X.X.zip` にまとめて配布
+7. `TrigleCut-vX.X.X.zip` にまとめて配布
 
 ---
 

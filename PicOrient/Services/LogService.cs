@@ -3,7 +3,7 @@ namespace PicOrient.Services;
 public class LogService
 {
     private static readonly string LogDir =
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PicOrient", "logs");
+        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TrigleCut", "logs");
 
     private readonly string _logFile;
     private readonly object _lock = new();

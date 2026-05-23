@@ -15,7 +15,7 @@ public sealed partial class MainWindow : Window
     public MainViewModel ViewModel { get; }
 
     private static readonly string AppVersion = "1.0.0";
-    private static readonly string AppName = "PicOrient";
+    private static readonly string AppName = "TrigleCut";
 
     public MainWindow()
     {
