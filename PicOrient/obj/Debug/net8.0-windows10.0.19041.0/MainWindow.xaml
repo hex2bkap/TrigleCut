@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:ConnectionId='1'
+    x:Class="PicOrient.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PicOrient"
+    Title="PicOrient">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- メニューバー -->
+        <MenuBar Grid.Row="0">
+            <MenuBarItem Title="ヘルプ">
+                <MenuFlyoutItem x:ConnectionId='33' Text="ログフォルダを開く"                            />
+                <MenuFlyoutSeparator/>
+                <MenuFlyoutItem x:ConnectionId='34' Text="バージョン情報"                            />
+            </MenuBarItem>
+        </MenuBar>
+
+        <!-- メインコンテンツ -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Padding="20,16,20,24" Spacing="16">
+
+                <!-- ① フォルダ選択 -->
+                <TextBlock Text="フォルダ選択" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+
+                <Border x:ConnectionId='7'
+                    x:Name="DropAreaBorder"
+                    BorderThickness="2"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    CornerRadius="8"
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    MinHeight="96"
+                    AllowDrop="True"
+                                                
+                                                  
+                                                  
+                                        
+                    Padding="16">
+                    <StackPanel Spacing="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                            <FontIcon Glyph="&#xE8B7;" FontSize="24"/>
+                            <TextBlock Text="フォルダをここにドロップ" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock
+                            Text="または"
+                            HorizontalAlignment="Center"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        <Button x:ConnectionId='31'
+                            Content="フォルダを選択..."
+                            HorizontalAlignment="Center"
+                                                                                  />
+                        <TextBlock x:ConnectionId='32'
+                                                                               
+                            TextWrapping="Wrap"
+                            HorizontalAlignment="Center"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            MaxWidth="600"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 出力先 -->
+                <StackPanel Spacing="8">
+                    <TextBlock Text="出力先" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                    <RadioButton x:ConnectionId='26'
+                        Content="ソースフォルダ内に作成（推奨）"
+                                                                                           />
+                    <RadioButton x:ConnectionId='27'
+                        Content="別のフォルダを指定"
+                                                                                         />
+                    <StackPanel x:ConnectionId='28'
+                        Orientation="Horizontal"
+                        Spacing="8"
+                                                                                              >
+                        <TextBox x:ConnectionId='29'
+                            Width="420"
+                                                                                     
+                            PlaceholderText="出力フォルダのパス"
+                            IsReadOnly="True"/>
+                        <Button x:ConnectionId='30'
+                            Content="参照..."
+                                                                                  />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border BorderThickness="0,1,0,0" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" Margin="0,4,0,0"/>
+
+                <!-- ② 設定 -->
+                <TextBlock Text="設定" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+
+                <Grid ColumnSpacing="32" RowSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- 操作 -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="操作" VerticalAlignment="Center" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="16">
+                        <RadioButton x:ConnectionId='24' Content="コピー"                                                   />
+                        <RadioButton x:ConnectionId='25' Content="移動"                                                   />
+                    </StackPanel>
+
+                    <!-- 重複ファイル -->
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="重複ファイル" VerticalAlignment="Center" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="16">
+                        <RadioButton x:ConnectionId='21' Content="スキップ"                                                          />
+                        <RadioButton x:ConnectionId='22' Content="上書き"                                                               />
+                        <RadioButton x:ConnectionId='23' Content="自動リネーム"                                                            />
+                    </StackPanel>
+
+                    <!-- 判定閾値 -->
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="判定閾値" VerticalAlignment="Center" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                    <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                        <NumberBox x:ConnectionId='20'
+                                                                                        
+                            Minimum="1.01"
+                            Maximum="5.0"
+                            SmallChange="0.05"
+                            SpinButtonPlacementMode="Compact"
+                            Width="120"/>
+                        <TextBlock
+                            Text="この値未満の縦横比を「中間」とみなします"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- サブフォルダ -->
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="サブフォルダ" VerticalAlignment="Center" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                    <CheckBox x:ConnectionId='16'
+                        Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                        Content="サブフォルダも処理する"
+                                                                                     />
+
+                    <!-- フォルダ名 -->
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="フォルダ名" VerticalAlignment="Center" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                    <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="16">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="縦" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                            <TextBox x:ConnectionId='19'                                                           Width="100"/>
+                        </StackPanel>
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="横" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                            <TextBox x:ConnectionId='18'                                                            Width="100"/>
+                        </StackPanel>
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="中間" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                            <TextBox x:ConnectionId='17'                                                         Width="100"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <Border BorderThickness="0,1,0,0" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" Margin="0,4,0,0"/>
+
+                <!-- ③ スキャン結果 -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Grid.Column="0"
+                        Text="スキャン結果"
+                        Style="{ThemeResource SubtitleTextBlockStyle}"
+                        VerticalAlignment="Center"/>
+                    <Grid Grid.Column="1">
+                        <Button x:ConnectionId='14'
+                            Content="スキャン実行"
+                                                                    
+                            Style="{ThemeResource AccentButtonStyle}"
+                                                                                             />
+                        <Button x:ConnectionId='15'
+                            Content="キャンセル"
+                                                                      
+                            BorderThickness="1.5"
+                                                                                             >
+                            <Button.Resources>
+                                <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
+                                <SolidColorBrush x:Key="ButtonForeground" Color="#FF6B6B"/>
+                                <SolidColorBrush x:Key="ButtonBorderBrush" Color="#C42B1C"/>
+                                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#22C42B1C"/>
+                                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="#FF6B6B"/>
+                                <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="#C42B1C"/>
+                                <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#44C42B1C"/>
+                                <SolidColorBrush x:Key="ButtonForegroundPressed" Color="#FF8080"/>
+                                <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="#E03020"/>
+                            </Button.Resources>
+                        </Button>
+                    </Grid>
+                </Grid>
+
+                <Grid ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- 縦 -->
+                    <Border Grid.Column="0" CornerRadius="8" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Padding="12">
+                        <StackPanel HorizontalAlignment="Center" Spacing="4">
+                            <TextBlock Text="縦" HorizontalAlignment="Center" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                            <TextBlock x:ConnectionId='13'                                                      HorizontalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
+                            <TextBlock Text="枚" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 横 -->
+                    <Border Grid.Column="1" CornerRadius="8" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Padding="12">
+                        <StackPanel HorizontalAlignment="Center" Spacing="4">
+                            <TextBlock Text="横" HorizontalAlignment="Center" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                            <TextBlock x:ConnectionId='12'                                                       HorizontalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
+                            <TextBlock Text="枚" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 中間 -->
+                    <Border Grid.Column="2" CornerRadius="8" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Padding="12">
+                        <StackPanel HorizontalAlignment="Center" Spacing="4">
+                            <TextBlock Text="中間" HorizontalAlignment="Center" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                            <TextBlock x:ConnectionId='11'                                                    HorizontalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
+                            <TextBlock Text="枚" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 合計 -->
+                    <Border Grid.Column="3" CornerRadius="8" Background="{ThemeResource SubtleFillColorTransparentBrush}" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Padding="12">
+                        <StackPanel HorizontalAlignment="Center" Spacing="4">
+                            <TextBlock Text="合計" HorizontalAlignment="Center" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                            <TextBlock x:ConnectionId='10'                                                   HorizontalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}"/>
+                            <TextBlock Text="枚" HorizontalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <Border BorderThickness="0,1,0,0" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" Margin="0,4,0,0"/>
+
+                <!-- ④ 実行 -->
+                <Grid>
+                    <Button x:ConnectionId='8'
+                        Content="振り分け実行"
+                        HorizontalAlignment="Stretch"
+                        Style="{ThemeResource AccentButtonStyle}"
+                                                                
+                                                                                         />
+                    <Button x:ConnectionId='9'
+                        Content="キャンセル"
+                        HorizontalAlignment="Stretch"
+                        BorderThickness="1.5"
+                                                                  
+                                                                                         >
+                        <Button.Resources>
+                            <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
+                            <SolidColorBrush x:Key="ButtonForeground" Color="#FF6B6B"/>
+                            <SolidColorBrush x:Key="ButtonBorderBrush" Color="#C42B1C"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#22C42B1C"/>
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="#FF6B6B"/>
+                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="#C42B1C"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#44C42B1C"/>
+                            <SolidColorBrush x:Key="ButtonForegroundPressed" Color="#FF8080"/>
+                            <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="#E03020"/>
+                        </Button.Resources>
+                    </Button>
+                </Grid>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- 固定ステータスパネル -->
+        <Border
+            Grid.Row="2"
+            BorderThickness="0,1,0,0"
+            BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+            Background="{ThemeResource LayerFillColorDefaultBrush}">
+            <StackPanel Padding="20,8,20,12" Spacing="6">
+
+                <!-- エラー通知 InfoBar -->
+                <InfoBar x:ConnectionId='2'
+                    x:Name="SortErrorInfoBar"
+                                                                           
+                    Severity="Error"
+                                                                           
+                    IsClosable="True"
+                                                    >
+                    <InfoBar.Content>
+                        <StackPanel Spacing="6">
+                            <TextBlock x:ConnectionId='5'
+                                                                                     
+                                IsTextSelectionEnabled="True"
+                                TextWrapping="Wrap"
+                                FontFamily="Consolas"
+                                FontSize="12"/>
+                            <HyperlinkButton x:ConnectionId='6'
+                                Content="ログフォルダを開く"
+                                                           
+                                Padding="0"/>
+                        </StackPanel>
+                    </InfoBar.Content>
+                </InfoBar>
+
+                <ProgressBar x:ConnectionId='3'
+                                                                         
+                    Maximum="100"
+                                                                                       />
+                <TextBlock x:ConnectionId='4'
+                                                                        
+                    TextWrapping="Wrap"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+

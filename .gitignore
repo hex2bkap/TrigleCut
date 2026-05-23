@@ -1,0 +1,15 @@
+# Build outputs
+bin/
+obj/
+publish/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Logs and settings (user-specific)
+*.log
+
+# Preview
+cancel_button_preview.html
