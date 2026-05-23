@@ -1,7 +1,7 @@
 # Build outputs
-bin/
-obj/
-publish/
+**/bin/
+**/obj/
+**/publish/
 
 # Visual Studio
 .vs/
