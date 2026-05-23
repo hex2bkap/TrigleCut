@@ -22,6 +22,7 @@ public sealed partial class MainWindow : Window
         InitializeComponent();
         ViewModel = new MainViewModel(DispatcherQueue);
         WindowHelper.RestorePosition(this, App.Settings.Current);
+        WindowHelper.SetMinSize(this, minWidthLogical: 540, minHeightLogical: 380);
         SetWindowIcon();
         Closed += MainWindow_Closed;
     }

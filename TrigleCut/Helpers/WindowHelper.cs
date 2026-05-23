@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Microsoft.UI.Windowing;
 using Windows.Graphics;
 using TrigleCut.Models;
@@ -6,6 +7,61 @@ namespace TrigleCut.Helpers;
 
 public static class WindowHelper
 {
+    // ── 最小ウィンドウサイズ ──────────────────────────────────────
+    private delegate IntPtr SubclassProc(
+        IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam,
+        IntPtr uIdSubclass, IntPtr dwRefData);
+
+    // サブクラスデリゲートを保持して GC 回収を防ぐ
+    private static readonly Dictionary<IntPtr, SubclassProc> _subclassProcs = new();
+
+    [DllImport("Comctl32.dll", SetLastError = true)]
+    private static extern bool SetWindowSubclass(
+        IntPtr hWnd, SubclassProc pfnSubclass, IntPtr uIdSubclass, IntPtr dwRefData);
+
+    [DllImport("Comctl32.dll")]
+    private static extern IntPtr DefSubclassProc(
+        IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
+
+    [DllImport("user32.dll")]
+    private static extern uint GetDpiForWindow(IntPtr hWnd);
+
+    private const uint WM_GETMINMAXINFO = 0x0024;
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct MINMAXINFO
+    {
+        public POINT Reserved, MaxSize, MaxPosition, MinTrackSize, MaxTrackSize;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    private struct POINT { public int X, Y; }
+
+    /// <summary>ウィンドウの最小サイズを論理ピクセル単位で設定します。</summary>
+    public static void SetMinSize(Microsoft.UI.Xaml.Window window, int minWidthLogical, int minHeightLogical)
+    {
+        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+        uint dpi = GetDpiForWindow(hwnd);
+        int minW = (int)(minWidthLogical * dpi / 96.0);
+        int minH = (int)(minHeightLogical * dpi / 96.0);
+
+        SubclassProc proc = (hWnd, uMsg, wParam, lParam, _, _) =>
+        {
+            if (uMsg == WM_GETMINMAXINFO)
+            {
+                var info = Marshal.PtrToStructure<MINMAXINFO>(lParam);
+                if (info.MinTrackSize.X < minW) info.MinTrackSize.X = minW;
+                if (info.MinTrackSize.Y < minH) info.MinTrackSize.Y = minH;
+                Marshal.StructureToPtr(info, lParam, false);
+                return IntPtr.Zero;
+            }
+            return DefSubclassProc(hWnd, uMsg, wParam, lParam);
+        };
+
+        _subclassProcs[hwnd] = proc;
+        SetWindowSubclass(hwnd, proc, (IntPtr)1, IntPtr.Zero);
+    }
+
+
     public static void RestorePosition(Microsoft.UI.Xaml.Window window, AppSettings settings)
     {
         var appWin = window.AppWindow;

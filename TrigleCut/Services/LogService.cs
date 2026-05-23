@@ -11,6 +11,29 @@ public class LogService
     public LogService()
     {
         _logFile = Path.Combine(LogDir, $"app-{DateTime.Now:yyyy-MM-dd}.log");
+        CleanOldLogs(keepDays: 30);
+    }
+
+    /// <summary>keepDays 日より古いログファイルを削除します。</summary>
+    private static void CleanOldLogs(int keepDays)
+    {
+        try
+        {
+            if (!Directory.Exists(LogDir)) return;
+            var cutoff = DateTime.Today.AddDays(-keepDays);
+
+            foreach (var file in Directory.EnumerateFiles(LogDir, "app-*.log"))
+            {
+                // ファイル名 "app-yyyy-MM-dd" から日付を解析して判定
+                var stem = Path.GetFileNameWithoutExtension(file); // "app-2025-01-15"
+                if (stem.Length >= 14 && DateTime.TryParse(stem[4..], out var fileDate) && fileDate < cutoff)
+                {
+                    try { File.Delete(file); }
+                    catch { /* 個別ファイルのエラーは無視 */ }
+                }
+            }
+        }
+        catch { /* ログ削除エラーは無視 */ }
     }
 
     public void Info(string message) => Write("INFO ", message);
