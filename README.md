@@ -2,6 +2,17 @@
 
 画像ファイルを**縦・横・中間**に自動で振り分けるWindows用ツールです。
 
+---
+
+## スクリーンショット
+
+<p align="center">
+  <img src="docs/screenshot_initial.png" width="360" alt="起動直後">
+  <img src="docs/screenshot_result.png" width="360" alt="スキャン完了後（縦3・横1・中間2）">
+</p>
+
+---
+
 ## 機能
 
 - フォルダ内の画像を縦横比で自動分類（縦 / 横 / 中間）
